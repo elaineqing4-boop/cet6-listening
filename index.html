@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CET6听力词库</title>
+
+<style>
+body{
+font-family:Arial;
+max-width:800px;
+margin:auto;
+padding:20px;
+}
+
+.word{
+border:1px solid #ddd;
+padding:15px;
+margin:10px 0;
+border-radius:10px;
+}
+
+button{
+padding:10px;
+font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>CET6听力词库</h1>
+
+<div class="word">
+
+<h2>articulate</h2>
+
+<p>明确表达</p>
+
+<button onclick="speak('articulate')">
+🔊朗读
+</button>
+
+</div>
+
+<div class="word">
+
+<h2>allocate</h2>
+
+<p>分配</p>
+
+<button onclick="speak('allocate')">
+🔊朗读
+</button>
+
+</div>
+
+<script>
+
+function speak(text){
+
+let utterance =
+new SpeechSynthesisUtterance(text);
+
+utterance.lang="en-US";
+
+speechSynthesis.speak(utterance);
+
+}
+
+</script>
+
+</body>
+</html>

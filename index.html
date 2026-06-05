@@ -110,7 +110,8 @@ onkeyup="searchWord()">
 <div id="container"></div>
 
 <script>
-
+let favorites=[];
+  
 const words=[
 
 {
@@ -2398,7 +2399,7 @@ category:"Culture",
 word:"diversity",
 meaning:"多样性",
 phrase:"cultural diversity 文化多样性",
-example:"The city values cultural 
+example:"The city values cultural diversity.
 },
   
 {
@@ -3079,25 +3080,10 @@ word:"compile",
 meaning:"汇编",
 phrase:"compile data",
 example:"Researchers compiled statistics."
-();
-renderWords();
-
-function favorite(word){
-
-if(!favorites.includes(word)){
-favorites.push(word);
-}
-
-alert(
-"已收藏：\n\n"+
-favorites.join("\n")
-);
-
-}
-
+];
 function renderWords(){
 
-const container=
+  const container=
 document.getElementById("container");
 
 container.innerHTML="";
@@ -3159,6 +3145,19 @@ onclick="speak('${item.example}')">
 
 }
 
+function favorite(word){
+
+if(!favorites.includes(word)){
+favorites.push(word);
+}
+
+alert(
+"已收藏：\n\n"+
+favorites.join("\n")
+);
+
+}
+
 function toggle(btn){
 
 const info=
@@ -3176,12 +3175,6 @@ utterance.lang="en-US";
 
 speechSynthesis.speak(utterance);
 }
-<h3>
-${item.word}
-<span onclick="favorite('${item.word}')">
-⭐
-</span>
-</h3>
 
 function searchWord(){
 
@@ -3204,26 +3197,6 @@ card.style.display="none";
 }
 
 });
-}
-function favorite(word){
-
-let favs=
-JSON.parse(
-localStorage.getItem("favorites")
-||"[]"
-);
-
-if(!favs.includes(word)){
-favs.push(word);
-
-localStorage.setItem(
-"favorites",
-JSON.stringify(favs)
-);
-
-alert("已收藏："+word);
-}
-
 }
 renderWords();
 function randomWord(){

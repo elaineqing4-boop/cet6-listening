@@ -395,7 +395,18 @@ alert("已收藏："+word);
 
 }
 renderWords();
+function randomWord(){
 
+const item=
+words[Math.floor(Math.random()*words.length)];
+
+alert(
+item.word +
+"\n\n中文："+item.meaning +
+"\n\n搭配："+item.phrase
+);
+
+}
 </script>
 
 </body>

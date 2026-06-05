@@ -64,13 +64,43 @@ display:none;
 .info{
 margin-top:10px;
 }
+  body{
+background:linear-gradient(
+135deg,
+#ffe6f7,
+#e8f0ff,
+#f3e8ff
+);
+min-height:100vh;
+}
+
+h1{
+color:#6a4cff;
+font-size:42px;
+}
+
+.word{
+background:rgba(255,255,255,0.9);
+border-radius:20px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+.show{
+background:#ff70b8;
+}
+
+.speak{
+background:#7d7dff;
+}
 </style>
 </head>
 
 <body>
 
 <h1>🎧 CET6 Listening Master 7.0</h1>
-
+<button onclick="randomWord()" id="randomBtn">
+🎲 随机抽词
+</button>
 <input
 type="text"
 id="search"

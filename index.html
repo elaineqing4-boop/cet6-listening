@@ -1,73 +1,241 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<title>CET6听力词库</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CET6 Listening Master 7.0</title>
 
 <style>
 body{
-font-family:Arial;
-max-width:800px;
+font-family:Arial,sans-serif;
+max-width:1000px;
 margin:auto;
 padding:20px;
+background:#f5f7fb;
+}
+
+h1{
+text-align:center;
+}
+
+input{
+width:100%;
+padding:12px;
+font-size:18px;
+margin-bottom:20px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+.category{
+margin-top:30px;
 }
 
 .word{
-border:1px solid #ddd;
+background:white;
 padding:15px;
 margin:10px 0;
-border-radius:10px;
+border-radius:12px;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 
 button{
-padding:10px;
-font-size:16px;
+padding:8px 12px;
+margin:5px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.speak{
+background:#4caf50;
+color:white;
+}
+
+.show{
+background:#2196f3;
+color:white;
+}
+
+.hidden{
+display:none;
+}
+
+.info{
+margin-top:10px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>CET6听力词库</h1>
+<h1>🎧 CET6 Listening Master 7.0</h1>
 
-<div class="word">
+<input
+type="text"
+id="search"
+placeholder="搜索单词..."
+onkeyup="searchWord()">
 
-<h2>articulate</h2>
-
-<p>明确表达</p>
-
-<button onclick="speak('articulate')">
-🔊朗读
-</button>
-
-</div>
-
-<div class="word">
-
-<h2>allocate</h2>
-
-<p>分配</p>
-
-<button onclick="speak('allocate')">
-🔊朗读
-</button>
-
-</div>
+<div id="container"></div>
 
 <script>
 
+const words=[
+
+{
+category:"Academic",
+word:"allocate",
+meaning:"分配",
+phrase:"allocate resources 分配资源",
+example:"The government allocated more resources to education."
+},
+
+{
+category:"Academic",
+word:"articulate",
+meaning:"清晰表达",
+phrase:"articulate ideas 清晰表达观点",
+example:"She can articulate her ideas clearly."
+},
+
+{
+category:"Business",
+word:"commodity",
+meaning:"商品",
+phrase:"commodity prices 商品价格",
+example:"Commodity prices rose sharply."
+},
+
+{
+category:"Politics",
+word:"treaty",
+meaning:"条约",
+phrase:"sign a treaty 签订条约",
+example:"The countries signed a peace treaty."
+},
+
+{
+category:"News",
+word:"slump",
+meaning:"暴跌",
+phrase:"economic slump 经济衰退",
+example:"The industry faced a serious slump."
+}
+
+];
+
+function renderWords(){
+
+const container=
+document.getElementById("container");
+
+container.innerHTML="";
+
+let currentCategory="";
+
+words.forEach(item=>{
+
+if(item.category!==currentCategory){
+
+currentCategory=item.category;
+
+container.innerHTML+=`
+<div class="category">
+<h2>${currentCategory}</h2>
+</div>
+`;
+}
+
+container.innerHTML+=`
+
+<div class="word">
+
+<h3>${item.word}</h3>
+
+<button
+class="speak"
+onclick="speak('${item.word}')">
+🔊 单词
+</button>
+
+<button
+class="show"
+onclick="toggle(this)">
+显示内容
+</button>
+
+<div class="info hidden">
+
+<p><b>中文：</b>${item.meaning}</p>
+
+<p><b>搭配：</b>${item.phrase}</p>
+
+<p><b>例句：</b>${item.example}</p>
+
+<button
+class="speak"
+onclick="speak('${item.example}')">
+🔊 例句
+</button>
+
+</div>
+
+</div>
+`;
+});
+}
+
+function toggle(btn){
+
+const info=
+btn.parentElement.querySelector(".info");
+
+info.classList.toggle("hidden");
+}
+
 function speak(text){
 
-let utterance =
+const utterance=
 new SpeechSynthesisUtterance(text);
 
 utterance.lang="en-US";
 
 speechSynthesis.speak(utterance);
-
 }
+
+function searchWord(){
+
+let keyword=
+document.getElementById("search")
+.value.toLowerCase();
+
+let cards=
+document.querySelectorAll(".word");
+
+cards.forEach(card=>{
+
+let text=
+card.innerText.toLowerCase();
+
+if(text.includes(keyword)){
+card.style.display="";
+}else{
+card.style.display="none";
+}
+
+});
+}
+
+renderWords();
 
 </script>
 
 </body>
-</html>
+</html>{
+category:"Business",
+word:"retrieve",
+meaning:"检索",
+phrase:"retrieve information 检索信息",
+example:"The system retrieves data quickly."
+},

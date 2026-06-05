@@ -264,7 +264,12 @@ container.innerHTML+=`
 
 <div class="word">
 
-<h3>${item.word}</h3>
+<h3>
+${item.word}
+<span onclick="favorite('${item.word}')">
+⭐
+</span>
+</h3>
 
 <button
 class="speak"
@@ -339,7 +344,26 @@ card.style.display="none";
 
 });
 }
+function favorite(word){
 
+let favs=
+JSON.parse(
+localStorage.getItem("favorites")
+||"[]"
+);
+
+if(!favs.includes(word)){
+favs.push(word);
+
+localStorage.setItem(
+"favorites",
+JSON.stringify(favs)
+);
+
+alert("已收藏："+word);
+}
+
+}
 renderWords();
 
 </script>

@@ -267,7 +267,7 @@ phrase:"product launch 产品发布",
 example:"The company will launch a new service."
 }
 ];
-
+let favorites=[];
 function renderWords(){
 
 const container=
@@ -300,7 +300,18 @@ ${item.word}
 ⭐
 </span>
 </h3>
+function favorite(word){
 
+if(!favorites.includes(word)){
+favorites.push(word);
+}
+
+alert(
+"已收藏：\n\n" +
+favorites.join("\n")
+);
+
+}
 <button
 class="speak"
 onclick="speak('${item.word}')">

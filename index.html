@@ -9,7 +9,27 @@
 body{
 text-align:center;
 }
-  
+.word{
+  margin:15px auto;
+  padding:12px;
+  max-width:500px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  background:white;
+}
+
+.category{
+  margin-top:25px;
+  font-size:20px;
+  font-weight:bold;
+}
+
+input{
+  padding:8px;
+  margin:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
 .show{
 background:#c084fc;
 color:white;
@@ -3061,6 +3081,9 @@ onclick="toggle(this)">
 显示内容
 </button>
 
+<button onclick="favorite('${item.word}')">⭐ 收藏
+</button>
+
 <div class="info hidden">
 
 <p><b>中文：</b>${item.meaning}</p>
@@ -3138,6 +3161,7 @@ card.style.display="none";
 
 });
 }
+words.sort((a,b)=>a.category.localeCompare(b.category));
 renderWords();
 function randomWord(){
 
